@@ -16,14 +16,14 @@ namespace SportsStoreMVC.Data.Repositories
             _context = context;
             _products = context.Products;
         }
-        public void Add(Product product)
+        public void Add(Product obj)
         {
-            _products.Add(product);
+            _products.Add(obj);
         }
 
-        public void Delete(Product product)
+        public void Delete(Product obj)
         {
-            _products.Remove(product);
+            _products.Remove(obj);
         }
 
         public IEnumerable<Product> GetAll()

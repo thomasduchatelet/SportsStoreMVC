@@ -6,8 +6,8 @@ namespace SportsStoreMVC.Models.Domain
     {
         IEnumerable<T> GetAll();
         T GetById(int id);
-        void Add(T product);
-        void Delete(T product);
+        void Add(T obj);
+        void Delete(T obj);
         void SaveChanges();
     }
 }
