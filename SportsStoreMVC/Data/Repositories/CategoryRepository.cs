@@ -19,27 +19,32 @@ namespace SportsStoreMVC.Data.Repositories
         }
         public void Add(Category obj)
         {
-            _categories.Add()
+            _categories.Add(obj);
         }
 
         public void Delete(Category obj)
         {
-            throw new NotImplementedException();
+            _categories.Remove(obj);
         }
 
         public IEnumerable<Category> GetAll()
         {
-            throw new NotImplementedException();
+            return _categories.AsNoTracking().ToList();
         }
 
         public Category GetById(int id)
         {
-            throw new NotImplementedException();
+            return _categories.SingleOrDefault(c => c.CategoryId == id);
+        }
+
+        public Category GetByIdWithProducts(int id)
+        {
+            return _categories.Include(c => c.Products).SingleOrDefault(c => c.CategoryId == id);
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
     }
 }
