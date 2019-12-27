@@ -1,8 +1,8 @@
-﻿using SportsStore.Models.Domain;
+﻿using SportsStoreMVC.Models.Domain;
 using System;
 using System.Collections.Generic;
 
-namespace SportsStore.Data {
+namespace SportsStoreMVC.Data {
     public class SportsStoreDataInitializer {
         private readonly ApplicationDbContext _dbContext;
 
@@ -39,6 +39,7 @@ namespace SportsStore.Data {
                 City[] cities = new City[] { gent, antwerpen };
                 _dbContext.Cities.AddRange(cities);
 
+                _dbContext.SaveChanges();
                 Random r = new Random();
                 for (int i = 1; i < 10; i++) {
                     Customer klant = new Customer("student" + i, "Student" + i, "Jan", "Nieuwstraat 10", cities[r.Next(2)]);

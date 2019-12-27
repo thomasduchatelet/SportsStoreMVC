@@ -1,9 +1,9 @@
-﻿using SportsStore.Models.Domain;
+﻿using SportsStoreMVC.Models.Domain;
 using System;
 using System.Linq;
 using Xunit;
 
-namespace SportsStore.Tests.Models {
+namespace SportsStoreMVC.Tests.Models {
     public class CustomerTest {
         private const string _customerName = "SportingPiet";
         private const string _name = "Pieters";

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SportsStore.Models.Domain;
+using SportsStoreMVC.Models.Domain;
 
-namespace SportsStore.Data.Mappers
+namespace SportsStoreMVC.Data.Mappers
 {
     internal class OrderLineConfiguration : IEntityTypeConfiguration<OrderLine>
     {

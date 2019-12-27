@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SportsStore.Models;
+using SportsStoreMVC.Models;
 
-namespace SportsStore.Controllers {
+namespace SportsStoreMVC.Controllers {
     public class HomeController : Controller {
         private readonly ILogger<HomeController> _logger;
 

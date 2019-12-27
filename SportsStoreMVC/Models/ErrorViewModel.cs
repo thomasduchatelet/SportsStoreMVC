@@ -1,6 +1,6 @@
 using System;
 
-namespace SportsStore.Models {
+namespace SportsStoreMVC.Models {
     public class ErrorViewModel {
         public string RequestId { get; set; }
 

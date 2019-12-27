@@ -1,9 +1,9 @@
-﻿using SportsStore.Models.Domain;
+﻿using SportsStoreMVC.Models.Domain;
 using System;
 using System.Linq;
 using Xunit;
 
-namespace SportsStore.Tests.Models {
+namespace SportsStoreMVC.Tests.Models {
     public class CartTest {
         private readonly Cart _cart;
         private readonly Product _p1;

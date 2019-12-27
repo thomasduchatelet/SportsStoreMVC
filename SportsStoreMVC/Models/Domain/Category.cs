@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SportsStore.Models.Domain {
+namespace SportsStoreMVC.Models.Domain {
     public class Category {
         #region Fields
         private string _name;

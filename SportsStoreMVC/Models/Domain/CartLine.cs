@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SportsStore.Models.Domain {
+namespace SportsStoreMVC.Models.Domain {
     public class CartLine {
         #region Fields
         private int _quantity;

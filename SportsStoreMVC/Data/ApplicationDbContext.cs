@@ -1,8 +1,8 @@
-﻿using SportsStore.Models.Domain;
+﻿using SportsStoreMVC.Models.Domain;
 using Microsoft.EntityFrameworkCore;
-using SportsStore.Data.Mappers;
+using SportsStoreMVC.Data.Mappers;
 
-namespace SportsStore.Data
+namespace SportsStoreMVC.Data
 {
     public class ApplicationDbContext : DbContext
     {

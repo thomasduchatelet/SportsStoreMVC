@@ -1,8 +1,8 @@
-﻿using SportsStore.Models.Domain;
+﻿using SportsStoreMVC.Models.Domain;
 using System;
 using Xunit;
 
-namespace SportsStore.Tests.Models {
+namespace SportsStoreMVC.Tests.Models {
     public class CityTest {
         #region Constructor
         [Fact]

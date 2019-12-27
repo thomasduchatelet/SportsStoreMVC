@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SportsStore.Models.Domain {
+namespace SportsStoreMVC.Models.Domain {
     public class Cart {
         #region Fields
         private readonly IList<CartLine> _lines = new List<CartLine>();

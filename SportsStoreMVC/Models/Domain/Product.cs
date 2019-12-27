@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-// Make SportsStore.tests a friendly assembly so it can access the internal properties of this class
-[assembly: InternalsVisibleTo("SportsStore.Tests")]
+// Make SportsStoreMVC.tests a friendly assembly so it can access the internal properties of this class
+[assembly: InternalsVisibleTo("SportsStoreMVC.Tests")]
 
-namespace SportsStore.Models.Domain {
+namespace SportsStoreMVC.Models.Domain {
     public class Product {
         #region Fields
         private string _name;

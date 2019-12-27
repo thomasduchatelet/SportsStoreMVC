@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace SportsStore.Models.Domain {
+namespace SportsStoreMVC.Models.Domain {
     public class City {
         #region Fields
         private string _postalCode;
