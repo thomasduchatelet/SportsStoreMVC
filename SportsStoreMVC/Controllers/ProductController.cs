@@ -31,7 +31,7 @@ namespace SportsStoreMVC.Controllers
         {
             ViewData["IsEdit"] = false;
             ViewData["Categories"] = GetCategoiesSelectList();
-            return View(viewName: "Edit",new EditViewModel());
+            return View(viewName: "Edit");
         }
 
         [HttpPost]
@@ -68,9 +68,20 @@ namespace SportsStoreMVC.Controllers
             _productRepository.SaveChanges();
             return RedirectToAction("Index");
         }
-        public IActionResult Delete()
+        public IActionResult Delete(int id)
         {
-            return View(viewName: "Index", Products);
+            Product product = _productRepository.GetById(id);
+            return View(product);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            Product product = _productRepository.GetById(id);
+            _productRepository.Delete(product);
+            _productRepository.SaveChanges();
+            return RedirectToAction("Index");
         }
         private SelectList GetCategoiesSelectList(int selected = 0)
         {

@@ -11,7 +11,7 @@ namespace SportsStoreMVC.Data.Mappers
             builder.ToTable("OrderLine");
             builder.HasKey(t => new { t.OrderId, t.ProductId });
 
-            builder.HasOne(t => t.Product).WithMany().IsRequired().HasForeignKey(t => t.ProductId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(t => t.Product).WithMany().IsRequired().HasForeignKey(t => t.ProductId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
