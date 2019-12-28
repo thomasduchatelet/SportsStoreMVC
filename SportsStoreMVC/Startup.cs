@@ -10,7 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SportsStoreMVC.Data;
-
+using SportsStoreMVC.Data.Repositories;
+using SportsStoreMVC.Models.Domain;
 
 namespace SportsStoreMVC {
     public class Startup {
@@ -25,6 +26,8 @@ namespace SportsStoreMVC {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<SportsStoreDataInitializer>();
+            services.AddScoped<IRepository<Product>, ProductRepository>();
+            services.AddScoped<IRepository<Category>, CategoryRepository>();
             services.AddControllersWithViews();
         }
 

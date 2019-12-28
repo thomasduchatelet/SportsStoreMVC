@@ -10,14 +10,31 @@ namespace SportsStoreMVC.Controllers
     public class ProductController : Controller
     {
         private IRepository<Product> _productRepository;
+        private IRepository<Category> _categoryRepository;
 
-        public ProductController(IRepository<Product> productRepository)
+        private IEnumerable<Product> Products => _productRepository.GetAll().OrderBy(p => p.Name);
+
+        public ProductController(IRepository<Product> productRepository, IRepository<Category> categoryRepository)
         {
             _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
         }
         public IActionResult Index()
         {
-            return View();
+            return View(Products);
+        }
+
+        public IActionResult Create()
+        {
+            return View(viewName:"Index", Products);
+        }
+        public IActionResult Edit()
+        {
+            return View(viewName: "Index", Products);
+        }
+        public IActionResult Delete()
+        {
+            return View(viewName: "Index", Products);
         }
     }
 }
