@@ -14,6 +14,9 @@ namespace SportsStoreMVC.Models.ProductViewModels
         public bool InStock { get; set; }
         public int CategoryId { get; set; }
 
+        public EditViewModel()
+        {
+        }
         public EditViewModel(Product product)
         {
             Name = product.Name;

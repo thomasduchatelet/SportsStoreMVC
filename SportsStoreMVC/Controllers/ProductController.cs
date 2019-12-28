@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SportsStoreMVC.Models.Domain;
+using SportsStoreMVC.Models.ProductViewModels;
 
 namespace SportsStoreMVC.Controllers
 {
@@ -24,17 +26,55 @@ namespace SportsStoreMVC.Controllers
             return View(Products);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
-            return View(viewName:"Index", Products);
+            ViewData["IsEdit"] = false;
+            ViewData["Categories"] = GetCategoiesSelectList();
+            return View(viewName: "Edit",new EditViewModel());
         }
-        public IActionResult Edit()
+
+        [HttpPost]
+        public IActionResult Create(EditViewModel editViewModel)
         {
-            return View(viewName: "Index", Products);
+            Product product = new Product
+                (
+                    editViewModel.Name,
+                    editViewModel.Price,
+                    _categoryRepository.GetById(editViewModel.CategoryId),
+                    editViewModel.Description,
+                    editViewModel.InStock
+                );
+            _productRepository.Add(product);
+            _productRepository.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Product product = _productRepository.GetById(id);
+            if (product is null)
+                return NotFound();
+            ViewData["IsEdit"] = true;
+            ViewData["Categories"] = GetCategoiesSelectList(product.Category.CategoryId);
+            return View(new EditViewModel(product));
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, EditViewModel editViewModel)
+        {
+            Product product = _productRepository.GetById(id);
+            product.EditProduct(editViewModel, _categoryRepository.GetById(editViewModel.CategoryId));
+            _productRepository.SaveChanges();
+            return RedirectToAction("Index");
         }
         public IActionResult Delete()
         {
             return View(viewName: "Index", Products);
+        }
+        private SelectList GetCategoiesSelectList(int selected = 0)
+        {
+            return new SelectList(_categoryRepository.GetAll().OrderBy(c => c.Name), nameof(Category.CategoryId),nameof(Category.Name),selected);
         }
     }
 }

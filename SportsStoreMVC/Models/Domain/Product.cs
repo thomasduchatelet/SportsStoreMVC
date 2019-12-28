@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportsStoreMVC.Models.ProductViewModels;
+using System;
 using System.Runtime.CompilerServices;
 
 // Make SportsStoreMVC.tests a friendly assembly so it can access the internal properties of this class
@@ -61,6 +62,14 @@ namespace SportsStoreMVC.Models.Domain {
         #endregion
 
         #region Methods
+        public void EditProduct(EditViewModel model, Category category)
+        {
+            Name = model.Name;
+            Description = model.Description;
+            Price = model.Price;
+            InStock = model.InStock;
+            Category = category;
+        }
         public override bool Equals(object obj) {
             return obj is Product p && p.ProductId == ProductId;
         }

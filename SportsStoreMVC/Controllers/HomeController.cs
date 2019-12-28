@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SportsStoreMVC.Models;
+using SportsStoreMVC.Models.ProductViewModels;
 
 namespace SportsStoreMVC.Controllers {
     public class HomeController : Controller {
