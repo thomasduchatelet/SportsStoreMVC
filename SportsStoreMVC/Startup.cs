@@ -27,7 +27,7 @@ namespace SportsStoreMVC {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<SportsStoreDataInitializer>();
             services.AddScoped<IRepository<Product>, ProductRepository>();
-            services.AddScoped<IRepository<Category>, CategoryRepository>();
+            services.AddScoped<CategoryRepository>();
             services.AddControllersWithViews();
         }
 

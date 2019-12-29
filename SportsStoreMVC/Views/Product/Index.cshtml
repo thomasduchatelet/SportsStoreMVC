@@ -6,6 +6,15 @@
 
 <h1>@ViewData["Title"]</h1>
 
+<form>
+    <div class="form-group">
+        <label for="categoryId"></label>
+        <select id="categoryId" name="categoryId" asp-items="@(ViewData["Categories"] as SelectList)" class="form-control">
+            <option>-- All categories --</option>
+        </select>
+    </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+</form>
 <a asp-controller="Product" asp-action="Create" class="btn btn-secondary text-right">New Product</a>
 <p></p>
 <table class="table">

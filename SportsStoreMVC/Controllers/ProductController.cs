@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SportsStoreMVC.Data.Repositories;
 using SportsStoreMVC.Models.Domain;
 using SportsStoreMVC.Models.ProductViewModels;
 
@@ -12,25 +13,29 @@ namespace SportsStoreMVC.Controllers
     public class ProductController : Controller
     {
         private IRepository<Product> _productRepository;
-        private IRepository<Category> _categoryRepository;
+        private CategoryRepository _categoryRepository;
 
-        private IEnumerable<Product> Products => _productRepository.GetAll().OrderBy(p => p.Name);
-
-        public ProductController(IRepository<Product> productRepository, IRepository<Category> categoryRepository)
+        public ProductController(IRepository<Product> productRepository, CategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
         }
-        public IActionResult Index()
+        public IActionResult Index(int categoryId = 0)
         {
-            return View(Products);
+            ViewData["Categories"] = GetCategoriesSelectList(categoryId);
+            var products = _productRepository.GetAll().OrderBy(p => p.Name);
+            if (categoryId != 0)
+            {
+                products = _categoryRepository.GetByIdWithProducts(categoryId).Products.OrderBy(p => p.Name);
+            }
+            return View(products);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
             ViewData["IsEdit"] = false;
-            ViewData["Categories"] = GetCategoiesSelectList();
+            ViewData["Categories"] = GetCategoriesSelectList();
             return View(viewName: "Edit");
         }
 
@@ -56,7 +61,7 @@ namespace SportsStoreMVC.Controllers
             if (product is null)
                 return NotFound();
             ViewData["IsEdit"] = true;
-            ViewData["Categories"] = GetCategoiesSelectList(product.Category.CategoryId);
+            ViewData["Categories"] = GetCategoriesSelectList(product.Category.CategoryId);
             return View(new EditViewModel(product));
         }
 
@@ -83,7 +88,7 @@ namespace SportsStoreMVC.Controllers
             _productRepository.SaveChanges();
             return RedirectToAction("Index");
         }
-        private SelectList GetCategoiesSelectList(int selected = 0)
+        private SelectList GetCategoriesSelectList(int selected = 0)
         {
             return new SelectList(_categoryRepository.GetAll().OrderBy(c => c.Name), nameof(Category.CategoryId),nameof(Category.Name),selected);
         }
