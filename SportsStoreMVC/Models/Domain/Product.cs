@@ -1,4 +1,5 @@
-﻿using SportsStoreMVC.Models.ProductViewModels;
+﻿using SportsStoreMVC.Models.Domain.Enums;
+using SportsStoreMVC.Models.ProductViewModels;
 using System;
 using System.Runtime.CompilerServices;
 
@@ -15,6 +16,8 @@ namespace SportsStoreMVC.Models.Domain {
 
         #region Properties
         public int ProductId { get; internal set; }
+
+        public Availability Availability { get; set; }
 
         public string Name {
             get => _name;
@@ -47,13 +50,14 @@ namespace SportsStoreMVC.Models.Domain {
         #endregion
 
         #region Constructors
-        public Product(string name, decimal price, Category category, string description = null, bool inStock = true) {
+        public Product(string name, decimal price, Category category, string description = null, bool inStock = true, int availability = 2) {
             InStock = inStock;
             Name = name;
             Price = price;
             Description = description;
             Category = category;
             category.AddProduct(this);
+            Availability = (Availability)availability;
         }
 
         // Added for EF because EF cannot set navigation properties through constructor parameters
@@ -69,6 +73,7 @@ namespace SportsStoreMVC.Models.Domain {
             Price = model.Price;
             InStock = model.InStock;
             Category = category;
+            Availability = model.Availability;
         }
         public override bool Equals(object obj) {
             return obj is Product p && p.ProductId == ProductId;

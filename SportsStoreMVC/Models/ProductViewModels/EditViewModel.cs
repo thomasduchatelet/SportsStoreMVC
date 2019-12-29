@@ -1,4 +1,5 @@
 ﻿using SportsStoreMVC.Models.Domain;
+using SportsStoreMVC.Models.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace SportsStoreMVC.Models.ProductViewModels
         public decimal Price { get; set; }
         public bool InStock { get; set; }
         public int CategoryId { get; set; }
+        public Availability Availability { get; set; }
 
         public EditViewModel()
         {
@@ -24,6 +26,7 @@ namespace SportsStoreMVC.Models.ProductViewModels
             Price = product.Price;
             InStock = product.InStock;
             CategoryId = product.Category?.CategoryId ?? 0;
+            Availability = product.Availability;
         }
 
 

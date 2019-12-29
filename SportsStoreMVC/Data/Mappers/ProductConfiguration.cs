@@ -13,6 +13,7 @@ namespace SportsStoreMVC.Data.Mappers
             builder.Property(t => t.Name)
                 .IsRequired()
                 .HasMaxLength(100);
+            builder.Property(t => (int)t.Availability).IsRequired();
         }
     }
 }

@@ -14,6 +14,7 @@
         <th>Description</th>
         <th class="text-right">Price</th>
         <th class="text-center">In Stock</th>
+        <th>Availability</th>
         <th></th>
     </tr>
     @foreach(var item in Model)
@@ -29,7 +30,10 @@
                 @($"€ {item.Price:F2}")
             </td>
             <td class="text-center">
-                <input type="checkbox" @(item.InStock ? "checked" : "")/>
+                <input type="checkbox" @(item.InStock ? "checked" : "") disabled="disabled"/>
+            </td>
+            <td>
+                @item.Availability.ToString()
             </td>
             <td>
                 <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>

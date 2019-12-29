@@ -1,4 +1,5 @@
 ﻿@model SportsStoreMVC.Models.ProductViewModels.EditViewModel
+@using SportsStoreMVC.Models.Domain.Enums
 @{
     ViewData["Title"] = (bool)ViewData["IsEdit"] ? "Edit Product" : "Create Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -21,6 +22,12 @@
     <div class="form-group">
         <label asp-for="InStock">In stock</label>
         <input asp-for="InStock"/>
+    </div>
+    <div class="form-group">
+        <label asp-for="Availability">Availability</label>
+        <select asp-for="Availability" asp-items="Html.GetEnumSelectList<Availability>()" class="form-control">
+            <option value="">-- select availability --</option>
+        </select>
     </div>
     <div class="form-group">
         <label asp-for="CategoryId">Category</label>
