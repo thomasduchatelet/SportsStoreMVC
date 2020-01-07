@@ -42,7 +42,9 @@ namespace SportsStoreMVC.Controllers
         [HttpPost]
         public IActionResult Create(EditViewModel editViewModel)
         {
-            Product product = new Product
+            try
+            {
+                Product product = new Product
                 (
                     editViewModel.Name,
                     editViewModel.Price,
@@ -51,6 +53,11 @@ namespace SportsStoreMVC.Controllers
                     editViewModel.InStock
                 );
             _productRepository.Add(product);
+            }
+            catch
+            {
+                TempData["error"] = "Something went wrong, product was not created";
+            }
             _productRepository.SaveChanges();
             return RedirectToAction("Index");
         }

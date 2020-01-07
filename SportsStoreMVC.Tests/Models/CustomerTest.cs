@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using Xunit;
 
-namespace SportsStoreMVC.Tests.Models {
+namespace SportsStore.Tests.Models {
     public class CustomerTest {
         private const string _customerName = "SportingPiet";
         private const string _name = "Pieters";

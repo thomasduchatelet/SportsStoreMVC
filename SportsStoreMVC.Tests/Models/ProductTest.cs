@@ -1,14 +1,16 @@
 ﻿using SportsStoreMVC.Models.Domain;
+using SportsStoreMVC.Models.Domain.Enums;
+using SportsStoreMVC.Models.ProductViewModels;
 using System;
 using Xunit;
 
-namespace SportsStoreMVC.Tests.Models {
+namespace SportsStore.Tests.Models {
     public class ProductTest {
         private readonly Category _category;
 
         public ProductTest() {
             _category = new Category("Soccer");
-         }
+        }
 
         #region Constructor
         [Fact]
@@ -55,5 +57,26 @@ namespace SportsStoreMVC.Tests.Models {
 
         #endregion
 
+        #region Methods
+        [Fact]
+        public void EditProduct_ValidEdit_ChangesTheProduct() {
+            var product = new Product("Football", 10, _category);
+            var category = new Category("NewCategory");
+            Product newProduct = new Product("NewName", 20, category, "NewDescription", false, (int)Availability.ShopAndOnline);
+            product.EditProduct(new EditViewModel(newProduct),category);
+            Assert.Equal("NewName", product.Name);
+            Assert.Equal(20, product.Price);
+            Assert.Equal(category, product.Category);
+            Assert.Equal("NewDescription", product.Description);
+            Assert.Equal(Availability.ShopAndOnline, product.Availability);
+            Assert.False(product.InStock);
+        }
+
+        [Fact]
+        public void EditProduct_InValidEdit_ThrowsArgumentException() {
+            var product = new Product("Football", 10, _category);
+            Assert.Throws<ArgumentException>(() => product.EditProduct(new EditViewModel(new Product("NewName", 20, null, "NewDescription", false, (int)Availability.ShopAndOnline)), _category));
+        }
+        #endregion
     }
 }

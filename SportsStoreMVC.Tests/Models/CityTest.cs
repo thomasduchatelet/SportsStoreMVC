@@ -2,7 +2,7 @@
 using System;
 using Xunit;
 
-namespace SportsStoreMVC.Tests.Models {
+namespace SportsStore.Tests.Models {
     public class CityTest {
         #region Constructor
         [Fact]

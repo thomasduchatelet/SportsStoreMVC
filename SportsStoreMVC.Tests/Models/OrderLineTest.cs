@@ -2,7 +2,7 @@
 using System;
 using Xunit;
 
-namespace SportsStoreMVC.Tests.Models {
+namespace SportsStore.Tests.Models {
     public class OrderLineTest {
         private readonly Product _p1;
 

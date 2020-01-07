@@ -2,7 +2,7 @@
 using System;
 using Xunit;
 
-namespace SportsStoreMVC.Tests.Models {
+namespace SportsStore.Tests.Models {
     public class CategoryTest {
         private readonly Category _soccer;
         private readonly Product _football;

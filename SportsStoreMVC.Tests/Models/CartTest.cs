@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using Xunit;
 
-namespace SportsStoreMVC.Tests.Models {
+namespace SportsStore.Tests.Models {
     public class CartTest {
         private readonly Cart _cart;
         private readonly Product _p1;

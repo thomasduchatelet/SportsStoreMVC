@@ -12,6 +12,7 @@ namespace SportsStoreMVC.Data.Repositories
         private ApplicationDbContext _context;
         private DbSet<Category> _categories;
 
+
         public CategoryRepository(ApplicationDbContext context)
         {
             _context = context;
